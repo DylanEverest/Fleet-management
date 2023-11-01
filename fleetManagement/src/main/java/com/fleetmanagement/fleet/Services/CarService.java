@@ -34,7 +34,7 @@ public class CarService
 
     public Car getCarByID (Long id)
     {
-        return carRepository.getReferenceById(id);
+        return carRepository.findById(id).get();
     }
 
 
