@@ -34,8 +34,14 @@ public class CarService
 
     public Car getCarByID (Long id)
     {
-        return carRepository.findById(id).get();
+        try 
+        {
+            return carRepository.findById(id).get();
+        } 
+        catch (java.util.NoSuchElementException e) 
+        {
+            return null ;
+        }
     }
-
 
 }
