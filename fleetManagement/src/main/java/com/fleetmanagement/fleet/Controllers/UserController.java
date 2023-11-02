@@ -38,7 +38,7 @@ public class UserController {
         userCRUDService.updateUser(id, user);
     }
 
-    @DeleteMapping(path = "/user/{id}")
+    @DeleteMapping(path="/user/{id}")
     public void deleteUser(@PathVariable("id") final Long id)
     {
         userCRUDService.deleteUserByID(id);
