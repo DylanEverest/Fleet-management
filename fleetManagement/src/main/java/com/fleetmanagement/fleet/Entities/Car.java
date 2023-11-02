@@ -2,7 +2,6 @@ package com.fleetmanagement.fleet.Entities;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -21,7 +20,7 @@ public class Car
     @Column(nullable = false )
     private String carbrand ;
 
-    @OneToMany(cascade = CascadeType.ALL , fetch = FetchType.EAGER  , mappedBy = "car")
+    @OneToMany( fetch = FetchType.EAGER  , mappedBy = "car")
     List<CarMileage> carMileage ;
 
     public Long getCarId() 

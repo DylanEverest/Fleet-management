@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -31,7 +30,7 @@ public class CarMileage
 
     private double arrivalKm ;
 
-    @ManyToOne(cascade = CascadeType.DETACH ,targetEntity = Car.class ,fetch = FetchType.EAGER ,optional = false )
+    @ManyToOne(fetch = FetchType.EAGER ,optional = false )
     private Car car ;
 
 

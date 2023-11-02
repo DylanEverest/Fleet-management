@@ -1,5 +1,7 @@
 package com.fleetmanagement.fleet;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,7 +27,8 @@ public class CarMileageTests
     @Test 
 	public void testGetCarMileageList()
 	{
-		System.out.println(carMileAgeService.getCarMileageList().size());
+        List<CarMileage> list = carMileAgeService.getCarMileageList() ;
+		System.out.println(list.size());
 	}
 
 	@Test 
@@ -37,8 +40,8 @@ public class CarMileageTests
 	@Test
 	public void deleteCarMileageById()
 	{
-		carMileAgeService.deleteCarMileageByID( Long.valueOf(1)) ;
-		carMileAgeService.getCarMileageByID( Long.valueOf(1)) ;
+		carMileAgeService.deleteCarMileageByID( Long.valueOf(4)) ;
+		// System.out.println(carMileAgeService.getCarMileageByID( Long.valueOf(1)).getArrivalKm() ) ;
 	}
 
 	@Test 
@@ -48,7 +51,7 @@ public class CarMileageTests
         CarMileage carMileage = new CarMileage();
         carMileage.setArrivalKm(140);
         carMileage.setDepartureKm(8);
-        carMileage.setCar(carService.getCarByID(Long.valueOf(2) ));
+        carMileage.setCar(carService.getCarByID(Long.valueOf(3) ));
         
 		carMileAgeService.postCarMileage(carMileage) ;
 

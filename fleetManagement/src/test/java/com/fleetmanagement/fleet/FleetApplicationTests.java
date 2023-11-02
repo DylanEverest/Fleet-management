@@ -47,8 +47,8 @@ class FleetApplicationTests {
 	@Test
 	public void deleteCarById()
 	{
-		carService.deleteCarByID( Long.valueOf(1)) ;
-		carService.getCarByID( Long.valueOf(1)) ;
+		carService.deleteCarByID( Long.valueOf(3)) ;
+		carService.getCarByID( Long.valueOf(3)) ;
 	}
 
 	@Test void insert()
