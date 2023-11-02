@@ -1,36 +1,26 @@
 package com.fleetmanagement.fleet;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.fleetmanagement.fleet.Entities.Car;
-import com.fleetmanagement.fleet.Services.BusinessHelloService;
-import com.fleetmanagement.fleet.Services.CarService;
+import com.fleetmanagement.fleet.Services.CRUD.CarCRUDService;
 
 @SpringBootTest
 class FleetApplicationTests {
 
-	@Autowired
-	BusinessHelloService businessHelloService ;
 
 	@Autowired
-	CarService carService ;
+	CarCRUDService carService ;
 
 
 	@Test
 	void contextLoads() {
 	}
 
-	@Test
-	public void testHello()
-	{
-		String response = businessHelloService.getHelloWorld().toString();
 
-		assertEquals("Hello World!", response);
-	}
 
 	@Test 
 	public void testGetCarList()

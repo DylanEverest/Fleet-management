@@ -7,17 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.fleetmanagement.fleet.Entities.CarMileage;
-import com.fleetmanagement.fleet.Services.CarMileAgeService;
-import com.fleetmanagement.fleet.Services.CarService;
+import com.fleetmanagement.fleet.Services.CRUD.CarCRUDService;
+import com.fleetmanagement.fleet.Services.CRUD.CarMileCRUDAgeService;
 
 @SpringBootTest
 public class CarMileageTests 
 {
     @Autowired
-    CarMileAgeService carMileAgeService ;
+    CarMileCRUDAgeService carMileAgeService ;
 
     @Autowired
-    CarService carService ;
+    CarCRUDService carService ;
 
 	@Test
 	void contextLoads() {

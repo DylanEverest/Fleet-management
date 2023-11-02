@@ -1,4 +1,4 @@
-package com.fleetmanagement.fleet.Services;
+package com.fleetmanagement.fleet.Services.CRUD;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import com.fleetmanagement.fleet.Repositories.UserRepository;
 
 @Service
 
-public class UserService {
+public class UserCRUDService {
     
     @Autowired
     private UserRepository userRepository ;

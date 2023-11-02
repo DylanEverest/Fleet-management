@@ -1,4 +1,4 @@
-package com.fleetmanagement.fleet.Services;
+package com.fleetmanagement.fleet.Services.CRUD;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import com.fleetmanagement.fleet.Entities.CarMileage;
 import com.fleetmanagement.fleet.Repositories.CarMileageRepository;
 
 @Service
-public class CarMileAgeService 
+public class CarMileCRUDAgeService 
 {
 
     @Autowired

@@ -5,13 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.fleetmanagement.fleet.Entities.User;
-import com.fleetmanagement.fleet.Services.UserService;
+import com.fleetmanagement.fleet.Services.CRUD.UserCRUDService;
 
 @SpringBootTest
 public class UserApplicationTests {
 
     @Autowired
-    UserService userService ;
+    UserCRUDService userService ;
 
 
 	@Test
