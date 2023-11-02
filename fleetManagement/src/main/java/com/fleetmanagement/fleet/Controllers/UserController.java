@@ -26,7 +26,7 @@ public class UserController {
         return userCRUDService.getUserList() ;
     }
 
-    @GetMapping(path = "/car/{id}")
+    @GetMapping(path = "/user/{id}")
     public User getUserById(@PathVariable("id") final Long id)
     {
         return userCRUDService.getUserByID(Long.valueOf(id)) ;

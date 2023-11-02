@@ -25,7 +25,7 @@ public class CarMileageController {
         return carMileageCRUDService.getCarMileageList() ;
     }
 
-    @GetMapping(path = "/car/{id}")
+    @GetMapping(path = "/carMileage/{id}")
     public CarMileage getCarMileageById(@PathVariable("id") final Long id)
     {
         return carMileageCRUDService.getCarMileageByID(Long.valueOf(id)) ;

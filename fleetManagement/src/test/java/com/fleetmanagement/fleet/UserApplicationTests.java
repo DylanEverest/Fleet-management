@@ -26,7 +26,7 @@ public class UserApplicationTests {
 	@Test 
 	public void testGetUserByID()
 	{
-		System.out.println(userService.getUserByID( Long.valueOf(1)) ) ;
+		System.out.println(userService.getUserByID( Long.valueOf(2)) ) ;
 	}
 
 	@Test

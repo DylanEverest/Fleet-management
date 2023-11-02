@@ -34,7 +34,7 @@ public class CarMileageTests
 	@Test 
 	public void testGetCarMileageByID()
 	{
-		System.out.println(carMileAgeService.getCarMileageByID( Long.valueOf(1)) ) ;
+		System.out.println(carMileAgeService.getCarMileageByID( Long.valueOf(6)) ) ;
 	}
 
 	@Test
