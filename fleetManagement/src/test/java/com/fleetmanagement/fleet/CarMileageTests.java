@@ -38,7 +38,8 @@ public class CarMileageTests
 		carMileAgeService.getCarMileageByID( Long.valueOf(1)) ;
 	}
 
-	@Test void insert()
+	@Test 
+    public void insert()
 	{
 
         CarMileage carMileage = new CarMileage();

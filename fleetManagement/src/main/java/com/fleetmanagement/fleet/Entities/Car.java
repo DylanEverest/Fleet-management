@@ -1,8 +1,11 @@
 package com.fleetmanagement.fleet.Entities;
 
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,8 +21,8 @@ public class Car
     @Column(nullable = false )
     private String carbrand ;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    CarMileage carMileage ;
+    @OneToMany(cascade = CascadeType.ALL , fetch = FetchType.EAGER )
+    List<CarMileage> carMileage ;
 
     public Long getCarId() 
     {
