@@ -25,6 +25,12 @@ public class CarController {
         return carCRUDService.getCarList() ;
     }
 
+    @GetMapping(path = "/car/{id}")
+    public Car getCarsById(@PathVariable("id") final Long id)
+    {
+        return carCRUDService.getCarByID(Long.valueOf(id)) ;
+    }
+
     @PostMapping(path = "/car")
     public Car saveCar(@RequestBody Car car)
     {

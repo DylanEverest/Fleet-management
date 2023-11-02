@@ -26,6 +26,12 @@ public class UserController {
         return userCRUDService.getUserList() ;
     }
 
+    @GetMapping(path = "/car/{id}")
+    public User getUserById(@PathVariable("id") final Long id)
+    {
+        return userCRUDService.getUserByID(Long.valueOf(id)) ;
+    }
+
     @PostMapping(path = "/user")
     public User saveUser(@RequestBody User user)
     {
