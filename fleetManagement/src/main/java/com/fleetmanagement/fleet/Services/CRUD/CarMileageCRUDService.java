@@ -9,7 +9,7 @@ import com.fleetmanagement.fleet.Entities.CarMileage;
 import com.fleetmanagement.fleet.Repositories.CarMileageRepository;
 
 @Service
-public class CarMileCRUDAgeService 
+public class CarMileageCRUDService 
 {
 
     @Autowired

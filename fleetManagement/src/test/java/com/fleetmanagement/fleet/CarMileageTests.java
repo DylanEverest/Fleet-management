@@ -8,13 +8,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.fleetmanagement.fleet.Entities.CarMileage;
 import com.fleetmanagement.fleet.Services.CRUD.CarCRUDService;
-import com.fleetmanagement.fleet.Services.CRUD.CarMileCRUDAgeService;
+import com.fleetmanagement.fleet.Services.CRUD.CarMileageCRUDService;
 
 @SpringBootTest
 public class CarMileageTests 
 {
     @Autowired
-    CarMileCRUDAgeService carMileAgeService ;
+    CarMileageCRUDService carMileAgeService ;
 
     @Autowired
     CarCRUDService carService ;
