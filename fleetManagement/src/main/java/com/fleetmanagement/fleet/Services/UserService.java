@@ -44,4 +44,18 @@ public class UserService {
         }
     }
 
+    public void updateUser(Long id ,User user)
+    {
+        User userToUpdate = getUserByID(id);
+
+        if (userToUpdate == null) return ;
+
+        userToUpdate.setEmail(user.getEmail());
+        userToUpdate.setUserName(user.getUserName());
+        userToUpdate.setPassword(user.getPassword());
+
+        postUser(userToUpdate) ;
+
+    }
+
 }

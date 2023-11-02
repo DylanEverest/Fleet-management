@@ -44,4 +44,14 @@ public class CarService
         }
     }
 
+    public void updateCar(Long id , Car car)
+    {
+        Car carToUpdate = getCarByID(id) ;
+        if(carToUpdate == null) return;
+
+        carToUpdate.setCarbrand(car.getCarbrand());
+
+        postCar(carToUpdate) ;
+    }
+
 }

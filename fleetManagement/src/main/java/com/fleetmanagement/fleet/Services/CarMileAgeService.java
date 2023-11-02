@@ -24,7 +24,18 @@ public class CarMileAgeService
     public void deleteCarMileageByID(Long id)
     {
         carMileageRepository.deleteById(id);
+    }
 
+    public void updateCarMileage(Long id , CarMileage newVal)
+    {
+        CarMileage carMileageToUpdate = getCarMileageByID(id) ;
+        if(carMileageToUpdate == null) return ;
+
+        carMileageToUpdate.setArrivalKm(newVal.getArrivalKm());
+        carMileageToUpdate.setCar(newVal.getCar());
+        carMileageToUpdate.setDepartureKm(newVal.getDepartureKm());
+
+        postCarMileage(carMileageToUpdate);
     }
 
     public CarMileage postCarMileage(CarMileage CarMileage)
