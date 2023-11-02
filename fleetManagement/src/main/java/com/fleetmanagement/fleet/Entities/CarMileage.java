@@ -31,7 +31,7 @@ public class CarMileage
 
     private double arrivalKm ;
 
-    @ManyToOne(cascade = CascadeType.ALL ,targetEntity = Car.class ,fetch = FetchType.EAGER ,optional = false)
+    @ManyToOne(cascade = CascadeType.DETACH ,targetEntity = Car.class ,fetch = FetchType.EAGER ,optional = false )
     private Car car ;
 
 
