@@ -1,10 +1,12 @@
 package com.fleetmanagement.fleet.Entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Car 
@@ -15,6 +17,9 @@ public class Car
 
     @Column(nullable = false )
     private String carbrand ;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    CarMileage carMileage ;
 
     public Long getCarId() 
     {
