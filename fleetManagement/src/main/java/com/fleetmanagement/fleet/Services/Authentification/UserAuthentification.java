@@ -3,6 +3,7 @@ package com.fleetmanagement.fleet.Services.Authentification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fleetmanagement.fleet.Entities.User;
 import com.fleetmanagement.fleet.Repositories.UserRepository;
 
 
@@ -10,8 +11,15 @@ import com.fleetmanagement.fleet.Repositories.UserRepository;
 public class UserAuthentification 
 {
     @Autowired
-    UserRepository userRepository ;
+    private UserRepository userRepository ;
 
+    public boolean doExist(User user)
+    {
+        User found = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
+        
+        return found != null ;
+
+    }
     
 
     
