@@ -60,4 +60,11 @@ class FleetApplicationTests {
 
 	}
 
+	@Test void updateCar()
+	{
+		Car car = new Car() ;
+		car.setCarbrand("NISSAN");
+		carService.updateCar(Long.valueOf(3), car);
+	}
+
 }

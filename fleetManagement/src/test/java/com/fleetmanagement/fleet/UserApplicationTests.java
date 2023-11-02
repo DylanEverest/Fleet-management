@@ -46,5 +46,14 @@ public class UserApplicationTests {
 		userService.postUser(user) ;
 
 	}
+
+	@Test void update()
+	{
+		User user = new User();
+        user.setEmail("dylan@gmail.com");
+        user.setPassword("SAMBO");
+        user.setUserName("Dylan");
+		userService.updateUser(Long.valueOf(2), user);
+	}
     
 }

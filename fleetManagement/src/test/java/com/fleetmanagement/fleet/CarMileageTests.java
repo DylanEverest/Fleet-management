@@ -56,4 +56,16 @@ public class CarMileageTests
 		carMileAgeService.postCarMileage(carMileage) ;
 
 	}
+
+
+    @Test
+    public void update()
+    {
+        CarMileage carMileage = new CarMileage();
+        carMileage.setArrivalKm(140);
+        carMileage.setDepartureKm(0);
+        carMileage.setCar(carService.getCarByID(Long.valueOf(3) ));
+
+        carMileAgeService.updateCarMileage(Long.valueOf(6), carMileage);
+    }
 }
