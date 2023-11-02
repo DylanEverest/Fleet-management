@@ -21,7 +21,7 @@ public class Car
     @Column(nullable = false )
     private String carbrand ;
 
-    @OneToMany(cascade = CascadeType.ALL , fetch = FetchType.EAGER )
+    @OneToMany(cascade = CascadeType.ALL , fetch = FetchType.EAGER  , mappedBy = "car")
     List<CarMileage> carMileage ;
 
     public Long getCarId() 

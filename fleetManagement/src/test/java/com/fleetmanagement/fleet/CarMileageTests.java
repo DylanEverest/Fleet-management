@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.fleetmanagement.fleet.Entities.CarMileage;
 import com.fleetmanagement.fleet.Services.CarMileAgeService;
+import com.fleetmanagement.fleet.Services.CarService;
 
 @SpringBootTest
 public class CarMileageTests 
@@ -13,6 +14,8 @@ public class CarMileageTests
     @Autowired
     CarMileAgeService carMileAgeService ;
 
+    @Autowired
+    CarService carService ;
 
 	@Test
 	void contextLoads() {
@@ -45,6 +48,7 @@ public class CarMileageTests
         CarMileage carMileage = new CarMileage();
         carMileage.setArrivalKm(140);
         carMileage.setDepartureKm(8);
+        carMileage.setCar(carService.getCarByID(Long.valueOf(2) ));
         
 		carMileAgeService.postCarMileage(carMileage) ;
 

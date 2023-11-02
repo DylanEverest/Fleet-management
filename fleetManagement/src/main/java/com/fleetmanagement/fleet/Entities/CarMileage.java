@@ -12,9 +12,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 
 @Entity
+@Table(name = "carMileage")
 public class CarMileage 
 {
     @Id
@@ -29,10 +31,20 @@ public class CarMileage
 
     private double arrivalKm ;
 
-    @ManyToOne(cascade = CascadeType.ALL ,targetEntity = Car.class ,fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL ,targetEntity = Car.class ,fetch = FetchType.EAGER ,optional = false)
     private Car car ;
 
 
+
+    public Car getCar() 
+    {
+        return car;
+    }
+
+    public void setCar(Car car) 
+    {
+        this.car = car;
+    }
 
     public Long getCarMileageId() 
     {
