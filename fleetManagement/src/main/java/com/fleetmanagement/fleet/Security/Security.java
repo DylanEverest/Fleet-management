@@ -24,13 +24,11 @@ public class Security {
     public SecurityFilterChain filterChain ( HttpSecurity http) throws Exception
     {
          http
+        .csrf().disable()
         .authorizeHttpRequests(
            auth -> {
-                    //    auth.requestMatchers("/admin").hasRole("ADMIN");
-                    //    auth.requestMatchers("/usera").hasRole("USER");
-                    auth.requestMatchers("/fleet/auth").permitAll();
+                    auth.requestMatchers("/fleet/auth/register").permitAll();
                     auth.anyRequest().authenticated();
-
                    }
            ) ;
         
