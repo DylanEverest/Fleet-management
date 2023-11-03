@@ -22,7 +22,7 @@ public class Security {
         return http.authorizeHttpRequests(
             auth -> {
                         auth.requestMatchers("/admin").hasRole("ADMIN");
-                        auth.requestMatchers("/user").hasRole("USER");
+                        auth.requestMatchers("/usera").hasRole("USER");
                         auth.anyRequest().authenticated();
                     }
             ).
@@ -34,7 +34,7 @@ public class Security {
     @Bean
     public UserDetailsService users()
     {
-        UserDetails user = User.builder().username("usera").password(passwordEncoder().encode("123")).roles("USER").build() ;
+        UserDetails user = User.builder().username("user").password(passwordEncoder().encode("123")).roles("USER").build() ;
         UserDetails admin = User.builder().username("admin").password(passwordEncoder().encode("123")).roles("ADMIN").build() ;
 
         return new InMemoryUserDetailsManager(user ,admin);
