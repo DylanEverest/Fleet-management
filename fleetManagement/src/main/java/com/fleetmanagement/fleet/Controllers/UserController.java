@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fleetmanagement.fleet.Entities.User;
+import com.fleetmanagement.fleet.Entities.User.User;
 import com.fleetmanagement.fleet.Services.CRUD.UserCRUDService;
 
 

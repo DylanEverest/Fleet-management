@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fleetmanagement.fleet.Entities.User;
-import com.fleetmanagement.fleet.Repositories.UserRepository;
+import com.fleetmanagement.fleet.Entities.User.User;
+import com.fleetmanagement.fleet.Repositories.User.UserRepository;
 
 @Service
 

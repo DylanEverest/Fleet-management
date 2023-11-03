@@ -1,4 +1,4 @@
-package com.fleetmanagement.fleet.Repositories;
+package com.fleetmanagement.fleet.Repositories.Car;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fleetmanagement.fleet.Entities.Car;
-import com.fleetmanagement.fleet.Repositories.CarRepository;
+import com.fleetmanagement.fleet.Repositories.Car.CarRepository;
 
 @Service
 public class CarCRUDService 
