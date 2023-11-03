@@ -1,4 +1,4 @@
-package com.fleetmanagement.fleet.Controllers;
+package com.fleetmanagement.fleet.Controllers.User;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

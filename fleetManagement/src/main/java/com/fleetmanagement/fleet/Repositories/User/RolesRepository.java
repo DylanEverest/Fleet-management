@@ -8,5 +8,5 @@ import com.fleetmanagement.fleet.Entities.User.Roles;
 
 public interface RolesRepository extends JpaRepository<Roles ,Integer>{
 
-    Optional<Roles> findByName(String name);
+    Optional<Roles> findByRoleName(String roleName);
 }

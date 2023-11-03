@@ -22,7 +22,7 @@ public class User
     private Long UserID ;
 
     @Column(length = 50  ,nullable = false)
-    private String UserName ;
+    private String userName ;
 
     @Column(length = 250 ,nullable = false)
     private String password;
@@ -46,12 +46,12 @@ public class User
 
     public String getUserName() 
     {
-        return UserName;
+        return userName;
     }
 
     public void setUserName(String userName) 
     {
-        UserName = userName;
+        this.userName = userName;
     }
 
     public String getPassword() 

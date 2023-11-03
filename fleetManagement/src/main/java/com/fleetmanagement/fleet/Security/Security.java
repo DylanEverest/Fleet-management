@@ -28,7 +28,8 @@ public class Security {
            auth -> {
                     //    auth.requestMatchers("/admin").hasRole("ADMIN");
                     //    auth.requestMatchers("/usera").hasRole("USER");
-                    auth.anyRequest().permitAll();
+                    auth.requestMatchers("/fleet/auth").permitAll();
+                    auth.anyRequest().authenticated();
 
                    }
            ) ;
