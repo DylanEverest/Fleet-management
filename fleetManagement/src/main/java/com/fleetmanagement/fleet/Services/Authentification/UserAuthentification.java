@@ -3,11 +3,11 @@ package com.fleetmanagement.fleet.Services.Authentification;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.fleetmanagement.fleet.Entities.User.User;
 import com.fleetmanagement.fleet.Repositories.User.UserRepository;
+import com.fleetmanagement.fleet.Security.Encoder.SHA256PasswordEncoder;
 
 
 @Service
@@ -17,7 +17,7 @@ public class UserAuthentification
     private UserRepository userRepository ;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private SHA256PasswordEncoder passwordEncoder;
 
 
     public User login(User user) throws LoginException
@@ -26,12 +26,13 @@ public class UserAuthentification
         
         try 
         {
-            if (isPasswordValid(user, found.get().getPassword()) ) 
+            if (passwordEncoder.matches(user.getPassword(), found.get().getPassword()) ) 
             {
                 return found.get();
             }
             else
             {
+                System.out.println("ATO e");
                 throw new LoginException("Invalid credentials");
             }
             
@@ -45,9 +46,6 @@ public class UserAuthentification
     }
     
 
-    public boolean isPasswordValid(User user, String rawPassword) {
-        
-        return passwordEncoder.matches(rawPassword, user.getPassword());
-    }
+
     
 }
