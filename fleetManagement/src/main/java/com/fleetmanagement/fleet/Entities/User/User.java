@@ -1,15 +1,11 @@
 package com.fleetmanagement.fleet.Entities.User;
 
-import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -30,9 +26,24 @@ public class User
     @Column(length = 250 ,nullable = false)
     private String email;
 
-    @ManyToMany( fetch = FetchType.EAGER , cascade = CascadeType.ALL)
-    private List<Roles> roles ;
+    @Column(nullable = false)
+    private Double roles ;
 
+
+    public Double getRoles() 
+    {
+        return roles;
+    }
+
+    public void setRoles(Double roles) throws UserException 
+    {
+        if (roles <=0) {
+            throw new UserException("Invalid role") ;
+        }
+
+        this.roles = roles;
+        
+    }
 
     public Long getUserID() 
     {
@@ -72,14 +83,6 @@ public class User
     public void setEmail(String email) 
     {
         this.email = email;
-    }
-
-    public List<Roles> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Roles> roles) {
-        this.roles = roles;
     }
     
 }
