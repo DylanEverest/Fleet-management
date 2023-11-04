@@ -30,6 +30,7 @@ public class Security {
         .authorizeHttpRequests(
            auth -> {
                     auth.requestMatchers("/fleet/auth/register").permitAll();
+                    auth.requestMatchers("/fleet/auth/login").permitAll();
                     auth.anyRequest().authenticated();
                    }
            ) ;
