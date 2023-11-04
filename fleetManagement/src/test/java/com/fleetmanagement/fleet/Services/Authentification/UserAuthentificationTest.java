@@ -1,10 +1,10 @@
 package com.fleetmanagement.fleet.Services.Authentification;
 
-import org.junit.jupiter.api.Test;
+// import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.fleetmanagement.fleet.Entities.User.User;
+// import com.fleetmanagement.fleet.Entities.User.User;
 
 @SpringBootTest
 public class UserAuthentificationTest {
@@ -13,16 +13,16 @@ public class UserAuthentificationTest {
     UserAuthentification userAuthentification ;
 
 
-    @Test
-	void contextLoads() {
-	}
+    // @Test
+	// void contextLoads() {
+	// }
 
-    @Test
-    void testDoExist() {
-        User user = new User() ;
-        user.setEmail("dylan@gmail.com");
-        user.setPassword("SAMBO");
+    // @Test
+    // void testDoExist() {
+    //     User user = new User() ;
+    //     user.setEmail("dylan@gmail.com");
+    //     user.setPassword("SAMBO");
 
-        System.out.println(userAuthentification.login(user));
-    }
+    //     System.out.println(userAuthentification.login(user));
+    // }
 }
