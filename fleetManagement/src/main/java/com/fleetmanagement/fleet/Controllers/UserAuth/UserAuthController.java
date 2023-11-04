@@ -1,6 +1,5 @@
 package com.fleetmanagement.fleet.Controllers.UserAuth;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fleetmanagement.fleet.Entities.User.Roles;
 import com.fleetmanagement.fleet.Entities.User.User;
-import com.fleetmanagement.fleet.Repositories.User.RolesRepository;
 import com.fleetmanagement.fleet.Repositories.User.UserRepository;
 import com.fleetmanagement.fleet.Security.JWT.JWTGenerator;
 import com.fleetmanagement.fleet.Services.Authentification.UserAuthentification;
@@ -29,8 +26,6 @@ public class UserAuthController
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private RolesRepository roleRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -50,8 +45,6 @@ public class UserAuthController
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        Roles roles = roleRepository.findByRoleName("USER").get();
-        user.setRoles(Collections.singletonList(roles));
 
         userRepository.save(user);
 
@@ -67,16 +60,19 @@ public class UserAuthController
 
         if ( dbUser!=null ) 
         {
-            String token = jwtGenerator.generateToken(dbUser.getEmail(), dbUser.getUserName(), dbUser.getRo());
+            // Generate token based on email , username , role
+            String token = jwtGenerator.generateToken(dbUser.getEmail(), dbUser.getUserName(), dbUser.getRoles().toString());
 
-            // Renvoyez le token JWT dans la réponse
+            // return token to client
             Map<String, String> response = new HashMap<>();
             response.put("accessToken", token);
             response.put("tokenType", "Bearer");
 
             return ResponseEntity.ok(response);
-        } else {
-            // Informations d'identification non valides, renvoyez une réponse d'erreur
+        } 
+        else 
+        {
+            // Notify the error
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }
     }
