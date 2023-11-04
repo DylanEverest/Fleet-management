@@ -39,6 +39,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
             String username = tokenGenerator.getUsernameFromJWT(token);
 
             UserDetails userDetails = customUserDetailsService.loadUserByUsername(username);
+            
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null,
                     userDetails.getAuthorities());
 
@@ -59,7 +60,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
         {
             return bearerToken.substring(7, bearerToken.length());
         }
-        
+
         return null;
     }
 }

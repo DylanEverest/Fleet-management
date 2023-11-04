@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fleetmanagement.fleet.DTO.AuthResponseDTO;
 import com.fleetmanagement.fleet.Entities.User.Roles;
 import com.fleetmanagement.fleet.Entities.User.User;
 import com.fleetmanagement.fleet.Repositories.User.RolesRepository;
 import com.fleetmanagement.fleet.Repositories.User.UserRepository;
+import com.fleetmanagement.fleet.Security.JWT.JWTGenerator;
 
 @RestController
 @RequestMapping("/fleet/auth")
@@ -37,6 +39,13 @@ public class UserAuthController
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JWTGenerator jwtGenerator ;
+
+    @Autowired 
+    private AuthResponseDTO authResponseDTO;
+    
 
 
     @PostMapping("register")
@@ -56,7 +65,7 @@ public class UserAuthController
     }
 
     @PostMapping("login")
-    public ResponseEntity<String> login(@RequestBody User user){
+    public ResponseEntity<?> login(@RequestBody User user){
 
         Authentication authentication = null ;
         try 
@@ -68,14 +77,14 @@ public class UserAuthController
         } 
         catch (AuthenticationException e) 
         {
-            return new ResponseEntity<String>( e.getMessage() ,HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>( null ,HttpStatus.BAD_REQUEST);
         }
 
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return new ResponseEntity<String>("User signed success", HttpStatus.OK);
-        // String token = jwtGenerator.generateToken(authentication);
-        // return new ResponseEntity<>(new AuthResponseDTO(token), HttpStatus.OK);
+        // return new ResponseEntity<String>("User signed success", HttpStatus.OK);
+        String token = jwtGenerator.generateToken(authentication);
+        return new ResponseEntity<AuthResponseDTO>(new AuthResponseDTO(token), HttpStatus.OK);
     }
 
 }
