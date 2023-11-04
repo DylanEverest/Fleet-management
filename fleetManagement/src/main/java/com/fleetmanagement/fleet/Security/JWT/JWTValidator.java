@@ -19,7 +19,7 @@ public class JWTValidator
     private String secretKey;
 
 
-    public Claims validateToken(String token) 
+    public boolean validateToken(String token) 
     {
         try 
         {
@@ -31,13 +31,13 @@ public class JWTValidator
 
             if (isTokenExpired(claims.getExpiration())) 
             {
-                return null; // Le token a expiré
+                return false; // Expired
             }
 
-            return claims;
+            return true;
         } 
         catch (ExpiredJwtException | MalformedJwtException |  SignatureException e) {
-            return null; // La validation a échoué
+            return false; 
         }
     }
 
