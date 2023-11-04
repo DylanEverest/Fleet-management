@@ -64,6 +64,7 @@ public class UserAuthController
     public ResponseEntity<?> login(@RequestBody User user) {
 
         // login check
+        user.setPassword( passwordEncoder.encode(user.getPassword()) );
         User dbUser = userAuthentification.login(user);
 
         if ( dbUser!=null ) 
