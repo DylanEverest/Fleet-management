@@ -1,18 +1,19 @@
 package com.fleetmanagement.fleet.Services.Register;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.fleetmanagement.fleet.Entities.User.User;
 import com.fleetmanagement.fleet.Entities.User.UserException;
 import com.fleetmanagement.fleet.Repositories.User.UserRepository;
+import com.fleetmanagement.fleet.Security.Encoder.SHA256PasswordEncoder;
 
 @Component
-public class RegisterService {
+public class RegisterService 
+{
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private SHA256PasswordEncoder passwordEncoder;
 
     @Autowired
     private UserRepository userRepository;
@@ -25,7 +26,7 @@ public class RegisterService {
         }
 
         // Encode the passwd
-        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        String encodedPassword = passwordEncoder.encodePassword(user.getPassword());
 
         user.setPassword(encodedPassword);
 
