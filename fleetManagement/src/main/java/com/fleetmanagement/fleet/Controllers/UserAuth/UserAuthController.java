@@ -43,8 +43,6 @@ public class UserAuthController
     @Autowired
     private JWTGenerator jwtGenerator ;
 
-    @Autowired 
-    private AuthResponseDTO authResponseDTO;
     
 
 
@@ -84,6 +82,7 @@ public class UserAuthController
         SecurityContextHolder.getContext().setAuthentication(authentication);
         // return new ResponseEntity<String>("User signed success", HttpStatus.OK);
         String token = jwtGenerator.generateToken(authentication);
+        
         return new ResponseEntity<AuthResponseDTO>(new AuthResponseDTO(token), HttpStatus.OK);
     }
 
