@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fleetmanagement.fleet.Entities.User.User;
 import com.fleetmanagement.fleet.Entities.User.UserException;
-import com.fleetmanagement.fleet.Repositories.User.UserRepository;
 import com.fleetmanagement.fleet.Security.JWT.JWTGenerator;
+import com.fleetmanagement.fleet.Services.Authentification.LoginException;
 import com.fleetmanagement.fleet.Services.Authentification.UserAuthentification;
+import com.fleetmanagement.fleet.Services.Register.RegisterException;
+import com.fleetmanagement.fleet.Services.Register.RegisterService;
 
 @RestController
 @RequestMapping("/fleet/auth")
@@ -25,8 +27,7 @@ public class UserAuthController
     
 
     @Autowired
-    private UserRepository userRepository;
-
+    RegisterService registerService ;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -39,24 +40,19 @@ public class UserAuthController
 
 
     @PostMapping("register")
-    public ResponseEntity<?> register(@RequestBody User user) {
-        if (userRepository.existsByUserName(user.getUserName())) 
+    public ResponseEntity<?> register(@RequestBody User user) 
+    {
+        try
         {
-            return new ResponseEntity<>("Username is taken!", HttpStatus.BAD_REQUEST);
+            registerService.registerUser(user);
         }
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-        try {
-            user.setRoles(Double.valueOf(1) );
-        } 
-        catch (UserException e) 
+        catch(RegisterException | UserException e)
         {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid credentials");
         }
 
-        userRepository.save(user);
-
         return new ResponseEntity<>("User registered success!", HttpStatus.OK);
+
     }
 
 
@@ -65,25 +61,28 @@ public class UserAuthController
 
         // login check
         user.setPassword( passwordEncoder.encode(user.getPassword()) );
-        User dbUser = userAuthentification.login(user);
 
-        if ( dbUser!=null ) 
+        User dbUser;
+
+        try 
         {
-            // Generate token based on email , username , role
-            String token = jwtGenerator.generateToken(dbUser.getEmail(), dbUser.getUserName(), dbUser.getRoles().toString());
-
-            // return token to client
-            Map<String, String> response = new HashMap<>();
-            response.put("accessToken", token);
-            response.put("tokenType", "Bearer");
-
-            return ResponseEntity.ok(response);
+            dbUser = userAuthentification.login(user);
         } 
-        else 
+        catch (LoginException e) 
         {
-            // Notify the error
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }
+
+        // Generate token based on email , username , role
+        String token = jwtGenerator.generateToken(dbUser.getEmail(), dbUser.getUserName(), dbUser.getRoles().toString());
+
+        // return token to client
+        Map<String, String> response = new HashMap<>();
+            response.put("accessToken", token);
+            response.put("tokenType", "Bearer");
+        
+        return ResponseEntity.ok(response);
+
     }
 
     // @PostMapping("login")
