@@ -4,8 +4,9 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.security.SignatureException;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +17,7 @@ public class JWTValidator
 {
 
     @Value("${jwt.secret}") 
-    private String secretKey;
+    protected String secretKey;
 
 
     public boolean validateToken(String token) 
@@ -36,12 +37,15 @@ public class JWTValidator
 
             return true;
         } 
-        catch (ExpiredJwtException | MalformedJwtException |  SignatureException e) {
+        catch (ExpiredJwtException | MalformedJwtException |  SignatureException e) 
+        {
             return false; 
         }
     }
 
-    private boolean isTokenExpired(Date expiration) {
+
+    private boolean isTokenExpired(Date expiration) 
+    {
         return expiration.before(new Date());
     }
 }
