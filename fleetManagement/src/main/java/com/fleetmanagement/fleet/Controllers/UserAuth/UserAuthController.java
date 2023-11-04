@@ -31,10 +31,6 @@ public class UserAuthController
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    // @Autowired
-    // private JWTGenerator jwtGenerator ;
-
-    
 
 
     @PostMapping("register")
