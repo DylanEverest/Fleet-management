@@ -8,9 +8,11 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.fleetmanagement.fleet.Security.JWT.JwtAuthEntryPoint;
 import com.fleetmanagement.fleet.Security.UserAuth.CustomUserDetailsService;
 
 @Configuration
@@ -19,14 +21,23 @@ public class Security {
 
     @Autowired
     CustomUserDetailsService customUserDetailsService;
-    
+
+    @Autowired
+    JwtAuthEntryPoint authEntryPoint ;
     
     @Bean
+    @SuppressWarnings("removal")
     public SecurityFilterChain filterChain ( HttpSecurity http) throws Exception
     {
          http
         .csrf(AbstractHttpConfigurer::disable)
-
+        // JWT
+        .exceptionHandling()
+        .authenticationEntryPoint(authEntryPoint)
+        .and()
+        .sessionManagement()
+        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        .and()
         .authorizeHttpRequests(
            auth -> {
                     auth.requestMatchers("/fleet/auth/register").permitAll();
