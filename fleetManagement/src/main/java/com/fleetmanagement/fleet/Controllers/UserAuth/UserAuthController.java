@@ -1,6 +1,8 @@
 package com.fleetmanagement.fleet.Controllers.UserAuth;
 
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,8 @@ import com.fleetmanagement.fleet.Entities.User.Roles;
 import com.fleetmanagement.fleet.Entities.User.User;
 import com.fleetmanagement.fleet.Repositories.User.RolesRepository;
 import com.fleetmanagement.fleet.Repositories.User.UserRepository;
+import com.fleetmanagement.fleet.Security.JWT.JWTGenerator;
+import com.fleetmanagement.fleet.Services.Authentification.UserAuthentification;
 
 @RestController
 @RequestMapping("/fleet/auth")
@@ -31,6 +35,11 @@ public class UserAuthController
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private JWTGenerator jwtGenerator;
+
+    @Autowired
+    private UserAuthentification userAuthentification ;
 
 
     @PostMapping("register")
@@ -47,6 +56,29 @@ public class UserAuthController
         userRepository.save(user);
 
         return new ResponseEntity<>("User registered success!", HttpStatus.OK);
+    }
+
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody User user) {
+
+        // login check
+        User dbUser = userAuthentification.login(user);
+
+        if ( dbUser!=null ) 
+        {
+            String token = jwtGenerator.generateToken(dbUser.getEmail(), dbUser.getUserName(), dbUser.getRo());
+
+            // Renvoyez le token JWT dans la réponse
+            Map<String, String> response = new HashMap<>();
+            response.put("accessToken", token);
+            response.put("tokenType", "Bearer");
+
+            return ResponseEntity.ok(response);
+        } else {
+            // Informations d'identification non valides, renvoyez une réponse d'erreur
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+        }
     }
 
     // @PostMapping("login")
