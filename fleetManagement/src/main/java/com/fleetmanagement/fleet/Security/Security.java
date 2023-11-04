@@ -39,7 +39,7 @@ public class Security {
     }
 
 
-
+// required
     @Bean
     public BCryptPasswordEncoder passwordEncoder ()
     {
