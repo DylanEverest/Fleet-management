@@ -23,6 +23,6 @@ public class UserAuthentificationTest {
         user.setEmail("dylan@gmail.com");
         user.setPassword("SAMBO");
 
-        System.out.println(userAuthentification.doExist(user));
+        System.out.println(userAuthentification.login(user));
     }
 }

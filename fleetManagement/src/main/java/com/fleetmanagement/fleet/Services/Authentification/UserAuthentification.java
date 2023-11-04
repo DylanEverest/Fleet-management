@@ -13,11 +13,11 @@ public class UserAuthentification
     @Autowired
     private UserRepository userRepository ;
 
-    public boolean doExist(User user)
+    public User login(User user)
     {
         User found = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
         
-        return found != null ;
+        return found ;
 
     }
     
