@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fleetmanagement.fleet.Entities.User.User;
+import com.fleetmanagement.fleet.Entities.User.UserException;
 import com.fleetmanagement.fleet.Repositories.User.UserRepository;
 import com.fleetmanagement.fleet.Security.JWT.JWTGenerator;
 import com.fleetmanagement.fleet.Services.Authentification.UserAuthentification;
@@ -38,13 +39,20 @@ public class UserAuthController
 
 
     @PostMapping("register")
-    public ResponseEntity<String> register(@RequestBody User user) {
+    public ResponseEntity<?> register(@RequestBody User user) {
         if (userRepository.existsByUserName(user.getUserName())) 
         {
             return new ResponseEntity<>("Username is taken!", HttpStatus.BAD_REQUEST);
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
+        try {
+            user.setRoles(Double.valueOf(1) );
+        } 
+        catch (UserException e) 
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid credentials");
+        }
 
         userRepository.save(user);
 
