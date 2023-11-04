@@ -5,6 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.fleetmanagement.fleet.Entities.User.User;
+import com.fleetmanagement.fleet.Entities.User.UserException;
 import com.fleetmanagement.fleet.Repositories.User.UserRepository;
 
 @Component
@@ -16,20 +17,23 @@ public class RegisterService {
     @Autowired
     private UserRepository userRepository;
 
-    public void registerUser(User user) {
+    public void registerUser(User user) throws RegisterException, UserException 
+    {
+        if (userRepository.existsByUserName(user.getUserName())) 
+        {
+            throw new RegisterException("Username is taken!") ;
+        }
+
         // Encode the passwd
         String encodedPassword = passwordEncoder.encode(user.getPassword());
 
         user.setPassword(encodedPassword);
 
-        // register
+        user.setRoles(Double.valueOf(1) );
+
         userRepository.save(user);
     }
 
-    public boolean isPasswordValid(User user, String rawPassword) {
-        
-        return passwordEncoder.matches(rawPassword, user.getPassword());
-    }
 }
     
 
