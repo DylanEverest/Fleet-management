@@ -16,7 +16,7 @@ import java.util.Date;
 public class JWTValidator 
 {
 
-    @Value("${jwt.secret}") 
+    @Value("${jwt.secret}")
     protected String secretKey;
 
 

@@ -28,9 +28,9 @@ public class JWTValidatorConfiguration extends JWTValidator{
             return null;
         }
     }
-    
+
     public Double getRoleFromJWT(String token) {
-        
+
         try 
         {
             Claims claims = Jwts.parser()
