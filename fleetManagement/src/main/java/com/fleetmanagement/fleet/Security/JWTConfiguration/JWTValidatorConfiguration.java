@@ -6,7 +6,6 @@ import com.fleetmanagement.fleet.Security.JWT.JWTValidator;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
 
@@ -42,7 +41,7 @@ public class JWTValidatorConfiguration extends JWTValidator{
         try 
         {
             Claims claims = Jwts.parser()
-                ..setSigningKey(Keys.hmacShaKeyFor(secretKey.getBytes()))
+                .setSigningKey(Keys.hmacShaKeyFor(secretKey.getBytes()))
                 .parseClaimsJws(token)
                 .getBody();
     
