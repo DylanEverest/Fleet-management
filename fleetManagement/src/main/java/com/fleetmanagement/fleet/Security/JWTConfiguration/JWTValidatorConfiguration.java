@@ -11,26 +11,23 @@ import io.jsonwebtoken.security.SignatureException;
 
 @Component
 public class JWTValidatorConfiguration extends JWTValidator{
-    
-    public String getUsernameFromJWT(String token)
-    {
-        try 
-        {
-            Claims claims = Jwts.parser()
-                .setSigningKey(Keys.hmacShaKeyFor(secretKey.getBytes()))
-                .parseClaimsJws(token)
-                .getBody();
+
+
+    public String getUsernameFromJWT(String token) {
+        try {
+            byte[] secretKeyBytes = secretKey.getBytes("UTF-8"); // Convert the secretKey to bytes
+            Claims claims = Jwts.parserBuilder()
+                    .setSigningKey(Keys.hmacShaKeyFor(secretKeyBytes)) // Utilize the updated method
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody();
     
             String username = claims.get("username", String.class);
             return username;
-        } 
-        catch (SignatureException e) 
-        { 
+        } catch (SignatureException e) {
             System.out.println(e);
             return null;
-        }
-        catch(Exception e2)
-        {
+        } catch (Exception e2) {
             System.out.print(e2);
             return null;
         }
@@ -40,18 +37,23 @@ public class JWTValidatorConfiguration extends JWTValidator{
 
         try 
         {
-            Claims claims = Jwts.parser()
-                .setSigningKey(Keys.hmacShaKeyFor(secretKey.getBytes()))
-                .parseClaimsJws(token)
-                .getBody();
+            byte[] secretKeyBytes = secretKey.getBytes("UTF-8"); // Convert the secretKey to bytes
+            Claims claims = Jwts.parserBuilder()
+                    .setSigningKey(Keys.hmacShaKeyFor(secretKeyBytes)) // Utilize the updated method
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody();
     
             String role = claims.get("role", String.class);
 
             return Double.parseDouble(role);
         } 
-        catch (SignatureException e) 
-        {
+        catch (SignatureException e) {
+            System.out.println(e);
             return null;
-        }    
+        } catch (Exception e2) {
+            System.out.print(e2);
+            return null;
+        }
     }
 }

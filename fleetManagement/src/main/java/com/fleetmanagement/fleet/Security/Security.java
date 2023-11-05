@@ -35,10 +35,9 @@ public class Security
         // routes
         .authorizeHttpRequests(
            auth -> {
-                    auth.requestMatchers("/fleet/auth/register").permitAll();
-                    auth.requestMatchers("/fleet/auth/login").permitAll();
-                    auth.requestMatchers("/fleet/car").permitAll();
-                    // auth.anyRequest().authenticated();
+                        // we authorize any request but filter will manage the authentification
+                        // and authorization for different request
+                        auth.anyRequest().permitAll() ;
                    }
            ) ;
 
