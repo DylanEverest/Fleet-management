@@ -46,7 +46,6 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
             } 
             else 
             {
-                System.out.println("ALIKA");
                 // unsatisfied role
                 response.setStatus(HttpServletResponse.SC_FORBIDDEN);
             }
