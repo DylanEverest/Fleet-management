@@ -9,9 +9,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.fleetmanagement.fleet.Security.JWTConfiguration.JWTValidatorConfiguration;
-
-
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import jakarta.servlet.FilterChain;
@@ -19,7 +16,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@Component
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
     @Autowired
