@@ -1,5 +1,6 @@
 package com.fleetmanagement.fleet.Security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +16,10 @@ import com.fleetmanagement.fleet.Security.JWT.JWTAuthorizationFilter;
 
 @Configuration
 @EnableWebSecurity
-public class Security {
+public class Security 
+{
+    @Autowired
+    private JWTAuthorizationFilter jwtAuthorizationFilter;
 
     
     @Bean
@@ -33,7 +37,8 @@ public class Security {
            auth -> {
                     auth.requestMatchers("/fleet/auth/register").permitAll();
                     auth.requestMatchers("/fleet/auth/login").permitAll();
-                    auth.anyRequest().authenticated();
+                    auth.requestMatchers("/fleet/car").permitAll();
+                    // auth.anyRequest().authenticated();
                    }
            ) ;
 
@@ -54,10 +59,10 @@ public class Security {
         FilterRegistrationBean<JWTAuthorizationFilter> registrationBean 
               = new FilterRegistrationBean<>();
             
-        registrationBean.setFilter(new JWTAuthorizationFilter());
+        registrationBean.setFilter(jwtAuthorizationFilter);
      
-        registrationBean.addUrlPatterns("/users/*");
-     
+        registrationBean.addUrlPatterns("/fleet/car", "/fleet/car/*");
+        
         registrationBean.setOrder(1);
 
         return registrationBean;    

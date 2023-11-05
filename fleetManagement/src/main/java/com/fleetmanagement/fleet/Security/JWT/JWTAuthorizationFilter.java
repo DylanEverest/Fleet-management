@@ -6,6 +6,7 @@ import java.util.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.fleetmanagement.fleet.Security.JWTConfiguration.JWTValidatorConfiguration;
@@ -16,6 +17,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+@Component
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
     @Autowired
@@ -34,6 +36,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
             String username = jwtValidator.getUsernameFromJWT(token);
             Double role = jwtValidator.getRoleFromJWT(token);
 
+            System.out.println(username + role);
             // Role verification
             if (role != null && role >=1) 
             {
@@ -43,6 +46,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
             } 
             else 
             {
+                System.out.println("ALIKA");
                 // unsatisfied role
                 response.setStatus(HttpServletResponse.SC_FORBIDDEN);
             }
