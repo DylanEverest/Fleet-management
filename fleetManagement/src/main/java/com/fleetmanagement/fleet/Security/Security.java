@@ -1,5 +1,6 @@
 package com.fleetmanagement.fleet.Security;
 
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -8,6 +9,8 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
+import com.fleetmanagement.fleet.Security.JWT.JWTAuthorizationFilter;
 
 
 @Configuration
@@ -46,7 +49,19 @@ public class Security {
         return new BCryptPasswordEncoder() ;
     }
 
+    @Bean
+    public FilterRegistrationBean<JWTAuthorizationFilter> filterConfiguration(){
+        FilterRegistrationBean<JWTAuthorizationFilter> registrationBean 
+              = new FilterRegistrationBean<>();
+            
+        registrationBean.setFilter(new JWTAuthorizationFilter());
+     
+        registrationBean.addUrlPatterns("/users/*");
+     
+        registrationBean.setOrder(1);
 
+        return registrationBean;    
+    }
 
 
 
