@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fleetmanagement.fleet.Entities.Car;
@@ -14,6 +15,7 @@ import com.fleetmanagement.fleet.Services.CRUD.CarCRUDService;
 
 
 @RestController
+@RequestMapping("/fleet")
 public class CarController {
 
     @Autowired
