@@ -1,4 +1,4 @@
-package com.fleetmanagement.fleet.Security.JWT;
+package com.fleetmanagement.fleet.Security.JWT.Filter;
 
 import java.io.IOException;
 import java.util.Collections;

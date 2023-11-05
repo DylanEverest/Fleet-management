@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fleetmanagement.fleet.Entities.User.User;
 import com.fleetmanagement.fleet.Entities.User.UserException;
-import com.fleetmanagement.fleet.Security.JWT.JWTGenerator;
+import com.fleetmanagement.fleet.Security.JWT.utils.JWTGenerator;
 import com.fleetmanagement.fleet.Services.Authentification.LoginException;
 import com.fleetmanagement.fleet.Services.Authentification.UserAuthentification;
 import com.fleetmanagement.fleet.Services.Register.RegisterException;

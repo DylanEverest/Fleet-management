@@ -11,7 +11,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.fleetmanagement.fleet.Security.JWT.JWTAuthorizationFilter;
+import com.fleetmanagement.fleet.Security.JWT.Filter.JWTAuthorizationFilter;
 
 
 @Configuration

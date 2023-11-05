@@ -1,4 +1,4 @@
-package com.fleetmanagement.fleet.Security.JWT;
+package com.fleetmanagement.fleet.Security.JWT.utils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
