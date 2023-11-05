@@ -19,7 +19,15 @@ public class FilterSecurityConfiguration
             
         registrationBean.setFilter(jwtAuthorizationFilter);
      
-        registrationBean.addUrlPatterns("/fleet/car", "/fleet/car/*");
+        registrationBean.addUrlPatterns(
+
+                             "/fleet/car", 
+                                            "/fleet/car/*" ,
+                                            "fleet/user/*",
+                                            "fleet/user",
+                                            "fleet/carMileage",
+                                            "fleet/carMileage/*"
+                                       );
         
         registrationBean.setOrder(1);
 
