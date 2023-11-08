@@ -3,6 +3,7 @@ package com.fleetmanagement.fleet.Entities;
 import java.sql.Timestamp;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.stereotype.Component;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,7 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-
+@Component
 @Entity
 @Table(name = "carMileage")
 public class CarMileage 
