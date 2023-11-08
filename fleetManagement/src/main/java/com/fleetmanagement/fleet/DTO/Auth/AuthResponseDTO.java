@@ -1,4 +1,4 @@
-package com.fleetmanagement.fleet.DTO;
+package com.fleetmanagement.fleet.DTO.Auth;
 
 import org.springframework.stereotype.Component;
 
