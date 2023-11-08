@@ -1,6 +1,8 @@
 package com.fleetmanagement.fleet.Controllers.User;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fleetmanagement.fleet.DTO.User.UserDTO;
 import com.fleetmanagement.fleet.Entities.User.User;
 import com.fleetmanagement.fleet.Services.CRUD.UserCRUDService;
 
@@ -22,31 +25,45 @@ public class UserController {
     @Autowired
     private UserCRUDService userCRUDService ;
 
-    @GetMapping(path = "/user")
-    public Iterable<User> getUsers()
+    @Autowired
+    private UserDTO usersDTO ;
+
+
+    @GetMapping(path = "/users")
+    public UserDTO getUsers()
     {
-        return userCRUDService.getUserList() ;
+        List<User> users = userCRUDService.getUserList() ;
+        usersDTO.setUser(users);
+        return usersDTO ;
     }
 
-    @GetMapping(path = "/user/{id}")
-    public User getUserById(@PathVariable("id") final Long id)
+    @GetMapping(path = "/users/{id}")
+    public UserDTO getUsersById(@PathVariable("id") final Long id)
     {
-        return userCRUDService.getUserByID(Long.valueOf(id)) ;
+        User users = userCRUDService.getUserByID(Long.valueOf(id)) ;
+        usersDTO.setUser(users) ;
+
+        return usersDTO ;
     }
 
-    @PostMapping(path = "/user")
-    public User saveUser(@RequestBody User user)
+    @PostMapping(path = "/users")
+    public UserDTO saveUser(@RequestBody UserDTO usersDTO)
     {
-        return userCRUDService.postUser(user);
+        userCRUDService.postUser(usersDTO.getUser()[0]);
+
+        return usersDTO;
+
     }    
 
-    @PutMapping(path ="/user/{id}")
-    public void updateUser(@PathVariable("id") final Long id , @RequestBody User user)
+    @PutMapping(path ="/users/{id}")
+    public UserDTO updateUser(@PathVariable("id") final Long id , @RequestBody UserDTO usersDTO)
     {
-        userCRUDService.updateUser(id, user);
+        userCRUDService.updateUser(id, usersDTO.getUser()[0]);
+
+        return usersDTO;
     }
 
-    @DeleteMapping(path="/user/{id}")
+    @DeleteMapping(path = "/users/{id}")
     public void deleteUser(@PathVariable("id") final Long id)
     {
         userCRUDService.deleteUserByID(id);

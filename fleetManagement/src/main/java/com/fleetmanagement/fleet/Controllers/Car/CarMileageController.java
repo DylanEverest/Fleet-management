@@ -1,5 +1,7 @@
 package com.fleetmanagement.fleet.Controllers.Car;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fleetmanagement.fleet.DTO.Car.CarMileageDTO;
 import com.fleetmanagement.fleet.Entities.CarMileage;
 import com.fleetmanagement.fleet.Services.CRUD.CarMileageCRUDService;
 
@@ -21,31 +24,45 @@ public class CarMileageController {
     @Autowired
     private CarMileageCRUDService carMileageCRUDService ;
 
-    @GetMapping(path = "/carMileage")
-    public Iterable<CarMileage> getCarMileages()
+    @Autowired
+    private CarMileageDTO carMileagesDTO ;
+
+
+    @GetMapping(path = "/carMileages")
+    public CarMileageDTO getCarMileages()
     {
-        return carMileageCRUDService.getCarMileageList() ;
+        List<CarMileage> carMileages = carMileageCRUDService.getCarMileageList() ;
+        carMileagesDTO.setCarMileage(carMileages);
+        return carMileagesDTO ;
     }
 
-    @GetMapping(path = "/carMileage/{id}")
-    public CarMileage getCarMileageById(@PathVariable("id") final Long id)
+    @GetMapping(path = "/carMileages/{id}")
+    public CarMileageDTO getCarMileagesById(@PathVariable("id") final Long id)
     {
-        return carMileageCRUDService.getCarMileageByID(Long.valueOf(id)) ;
+        CarMileage carMileages = carMileageCRUDService.getCarMileageByID(Long.valueOf(id)) ;
+        carMileagesDTO.setCarMileage(carMileages) ;
+
+        return carMileagesDTO ;
     }
 
-    @PostMapping(path = "/carMileage")
-    public CarMileage saveCarMileage(@RequestBody CarMileage carMileage)
+    @PostMapping(path = "/carMileages")
+    public CarMileageDTO saveCarMileage(@RequestBody CarMileageDTO carMileagesDTO)
     {
-        return carMileageCRUDService.postCarMileage(carMileage);
+        carMileageCRUDService.postCarMileage(carMileagesDTO.getCarMileage()[0]);
+
+        return carMileagesDTO;
+
     }    
 
-    @PutMapping(path ="/carMileage/{id}")
-    public void updateCarMileage(@PathVariable("id") final Long id , @RequestBody CarMileage carMileage)
+    @PutMapping(path ="/carMileages/{id}")
+    public CarMileageDTO updateCarMileage(@PathVariable("id") final Long id , @RequestBody CarMileageDTO carMileagesDTO)
     {
-        carMileageCRUDService.updateCarMileage(id, carMileage);
+        carMileageCRUDService.updateCarMileage(id, carMileagesDTO.getCarMileage()[0]);
+
+        return carMileagesDTO;
     }
 
-    @DeleteMapping(path = "/carMileage/{id}")
+    @DeleteMapping(path = "/carMileages/{id}")
     public void deleteCarMileage(@PathVariable("id") final Long id)
     {
         carMileageCRUDService.deleteCarMileageByID(id);
