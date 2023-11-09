@@ -22,7 +22,7 @@ public class CarDTO
     public void setCarAsSingle(Car cars) {
         this.cars[0] = cars;
     }
-    public void setCar(Car[] cars) {
+    public void setCars(Car[] cars) {
         this.cars = cars;
     }
     public void setCarAsList(List<Car> cars) {

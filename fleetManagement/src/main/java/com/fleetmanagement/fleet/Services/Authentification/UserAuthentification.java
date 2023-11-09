@@ -38,6 +38,7 @@ public class UserAuthentification
             
         } 
         catch (Exception e) {
+            System.out.println(e.getMessage());
             throw new LoginException("Invalid credentials");
         }
         
