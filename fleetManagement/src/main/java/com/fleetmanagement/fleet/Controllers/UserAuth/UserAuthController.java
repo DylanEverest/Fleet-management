@@ -84,28 +84,5 @@ public class UserAuthController
 
     }
 
-    // @PostMapping("login")
-    // public ResponseEntity<?> login(@RequestBody User user){
-
-    //     Authentication authentication = null ;
-    //     try 
-    //     {
-    //         authentication = authenticationManager.authenticate(
-    //             new UsernamePasswordAuthenticationToken(
-    //             user.getUserName(),
-    //             user.getPassword()));            
-    //     } 
-    //     catch (AuthenticationException e) 
-    //     {
-    //         return new ResponseEntity<>( null ,HttpStatus.BAD_REQUEST);
-    //     }
-
-
-    //     SecurityContextHolder.getContext().setAuthentication(authentication);
-    //     // return new ResponseEntity<String>("User signed success", HttpStatus.OK);
-    //     String token = jwtGenerator.generateToken(authentication);
-
-    //     return new ResponseEntity<AuthResponseDTO>(new AuthResponseDTO(token), HttpStatus.OK);
-    // }
 
 }
