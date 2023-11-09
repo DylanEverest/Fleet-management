@@ -1,6 +1,8 @@
 package com.fleetmanagement.fleet.DTO.Car;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +18,12 @@ public class CarDTO
     Car car;
 
     String errors ;
+
+
+    public void setCarAsList(List<Car> list)
+    {
+        listCars = list.toArray(new Car[list.size()]) ;
+    }
 
     public Car[] getListCars() {
         return listCars;

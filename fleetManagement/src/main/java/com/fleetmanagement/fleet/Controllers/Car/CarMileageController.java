@@ -40,7 +40,7 @@ public class CarMileageController {
     public CarMileageDTO getCarMileagesById(@PathVariable("id") final Long id)
     {
         CarMileage carMileages = carMileageCRUDService.getCarMileageByID(Long.valueOf(id)) ;
-        carMileagesDTO.setCarMileageAsSingle(carMileages) ;
+        carMileagesDTO.setCarMileage(carMileages) ;
 
         return carMileagesDTO ;
     }
@@ -48,7 +48,7 @@ public class CarMileageController {
     @PostMapping(path = "/carMileages")
     public CarMileageDTO saveCarMileage(@RequestBody CarMileageDTO carMileagesDTO)
     {
-        carMileageCRUDService.postCarMileage(carMileagesDTO.getCarMileage()[0]);
+        carMileageCRUDService.postCarMileage(carMileagesDTO.getCarMileage());
 
         return carMileagesDTO;
 
@@ -57,7 +57,7 @@ public class CarMileageController {
     @PutMapping(path ="/carMileages/{id}")
     public CarMileageDTO updateCarMileage(@PathVariable("id") final Long id , @RequestBody CarMileageDTO carMileagesDTO)
     {
-        carMileageCRUDService.updateCarMileage(id, carMileagesDTO.getCarMileage()[0]);
+        carMileageCRUDService.updateCarMileage(id, carMileagesDTO.getCarMileage());
 
         return carMileagesDTO;
     }

@@ -1,6 +1,8 @@
 package com.fleetmanagement.fleet.DTO.User;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +19,11 @@ public class UserDTO
 
     String errors ;
 
+    public void setUsersAsList(List<User> list)
+    {
+        listUser = list.toArray(new User[list.size()]) ;
+    }
+    
     public User[] getListUser() {
         return listUser;
     }

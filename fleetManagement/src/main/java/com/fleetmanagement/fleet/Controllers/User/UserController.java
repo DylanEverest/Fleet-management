@@ -41,7 +41,7 @@ public class UserController {
     public UserDTO getUsersById(@PathVariable("id") final Long id)
     {
         User users = userCRUDService.getUserByID(Long.valueOf(id)) ;
-        usersDTO.setUsersAsSingle(users) ;
+        usersDTO.setUser(users) ;
 
         return usersDTO ;
     }
@@ -49,7 +49,7 @@ public class UserController {
     @PostMapping(path = "/users")
     public UserDTO saveUser(@RequestBody UserDTO usersDTO)
     {
-        userCRUDService.postUser(usersDTO.getUser()[0]);
+        userCRUDService.postUser(usersDTO.getUser());
 
         return usersDTO;
 
@@ -58,7 +58,7 @@ public class UserController {
     @PutMapping(path ="/users/{id}")
     public UserDTO updateUser(@PathVariable("id") final Long id , @RequestBody UserDTO usersDTO)
     {
-        userCRUDService.updateUser(id, usersDTO.getUser()[0]);
+        userCRUDService.updateUser(id, usersDTO.getUser());
 
         return usersDTO;
     }

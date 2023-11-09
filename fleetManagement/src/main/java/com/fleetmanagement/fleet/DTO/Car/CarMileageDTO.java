@@ -1,6 +1,8 @@
 package com.fleetmanagement.fleet.DTO.Car;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +20,10 @@ public class CarMileageDTO
     
     String errors ;
 
+    public void setCarMileageAsList(List<CarMileage> list)
+    {
+        listCarMileage = list.toArray(new CarMileage[list.size()]) ;
+    }
 
     public CarMileage[] getListCarMileage() {
         return listCarMileage;

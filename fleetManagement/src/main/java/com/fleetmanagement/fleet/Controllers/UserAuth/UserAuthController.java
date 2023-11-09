@@ -42,7 +42,7 @@ public class UserAuthController
     {
         try
         {
-            User user = userDTO.getUser()[0];
+            User user = userDTO.getUser();
 
             registerService.registerUser(user);
         }

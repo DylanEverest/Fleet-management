@@ -40,7 +40,7 @@ public class CarController {
     public CarDTO getCarsById(@PathVariable("id") final Long id)
     {
         Car cars = carCRUDService.getCarByID(Long.valueOf(id)) ;
-        carsDTO.setCarAsSingle(cars) ;
+        carsDTO.setCar(cars) ;
 
         return carsDTO ;
     }
@@ -48,7 +48,7 @@ public class CarController {
     @PostMapping(path = "/cars")
     public CarDTO saveCar(@RequestBody CarDTO carsDTO)
     {
-        carCRUDService.postCar(carsDTO.getCar()[0]);
+        carCRUDService.postCar(carsDTO.getCar());
 
         return carsDTO;
 
@@ -57,7 +57,7 @@ public class CarController {
     @PutMapping(path ="/cars/{id}")
     public CarDTO updateCar(@PathVariable("id") final Long id , @RequestBody CarDTO carsDTO)
     {
-        carCRUDService.updateCar(id, carsDTO.getCar()[0]);
+        carCRUDService.updateCar(id, carsDTO.getCar());
 
         return carsDTO;
     }
