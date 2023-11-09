@@ -57,7 +57,7 @@ public class UserAuthController
 
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody User user) {
+    public ResponseEntity<?> login(@RequestBody UserDTO userDTO) {
 
         // login check
 
@@ -65,7 +65,7 @@ public class UserAuthController
 
         try 
         {
-            dbUser = userAuthentification.login(user);
+            dbUser = userAuthentification.login(userDTO);
         } 
         catch (LoginException e) 
         {

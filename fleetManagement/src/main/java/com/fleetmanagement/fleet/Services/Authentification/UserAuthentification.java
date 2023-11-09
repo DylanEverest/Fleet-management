@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fleetmanagement.fleet.DTO.User.UserDTO;
 import com.fleetmanagement.fleet.Entities.User.User;
 import com.fleetmanagement.fleet.Repositories.User.UserRepository;
 import com.fleetmanagement.fleet.Security.Encoder.SHA256PasswordEncoder;
@@ -20,8 +21,10 @@ public class UserAuthentification
     private SHA256PasswordEncoder passwordEncoder;
 
 
-    public User login(User user) throws LoginException
+    public User login(UserDTO userDTO) throws LoginException
     {
+        User user = userDTO.getUser();
+
         Optional <User> found = userRepository.findByEmail(user.getEmail());
         
         try 
