@@ -33,7 +33,7 @@ public class UserController {
     public UserDTO getUsers()
     {
         List<User> users = userCRUDService.getUserList() ;
-        usersDTO.setUser(users);
+        usersDTO.setUsersAsList(users);
         return usersDTO ;
     }
 
@@ -41,7 +41,7 @@ public class UserController {
     public UserDTO getUsersById(@PathVariable("id") final Long id)
     {
         User users = userCRUDService.getUserByID(Long.valueOf(id)) ;
-        usersDTO.setUser(users) ;
+        usersDTO.setUsersAsSingle(users) ;
 
         return usersDTO ;
     }

@@ -19,13 +19,13 @@ public class CarMileageDTO
         return carsMileage;
     }
 
-    public void setCarMileage(CarMileage carsMileage) {
+    public void setCarMileageAsSingle(CarMileage carsMileage) {
         this.carsMileage[0] = carsMileage;
     }
     public void setCarMileage(CarMileage[] carsMileage) {
         this.carsMileage = carsMileage;
     }
-    public void setCarMileage(List<CarMileage> carsMileage) {
+    public void setCarMileageAsList(List<CarMileage> carsMileage) {
         this.carsMileage = carsMileage.toArray(new CarMileage[carsMileage.size()]);
     }
 

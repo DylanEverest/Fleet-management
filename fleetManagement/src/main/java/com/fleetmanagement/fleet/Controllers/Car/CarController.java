@@ -32,7 +32,7 @@ public class CarController {
     public CarDTO getCars()
     {
         List<Car> cars = carCRUDService.getCarList() ;
-        carsDTO.setCar(cars);
+        carsDTO.setCarAsList(cars);
         return carsDTO ;
     }
 
@@ -40,7 +40,7 @@ public class CarController {
     public CarDTO getCarsById(@PathVariable("id") final Long id)
     {
         Car cars = carCRUDService.getCarByID(Long.valueOf(id)) ;
-        carsDTO.setCar(cars) ;
+        carsDTO.setCarAsSingle(cars) ;
 
         return carsDTO ;
     }

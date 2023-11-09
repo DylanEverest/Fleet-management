@@ -19,13 +19,13 @@ public class CarDTO
         return cars;
     }
 
-    public void setCar(Car cars) {
+    public void setCarAsSingle(Car cars) {
         this.cars[0] = cars;
     }
     public void setCar(Car[] cars) {
         this.cars = cars;
     }
-    public void setCar(List<Car> cars) {
+    public void setCarAsList(List<Car> cars) {
         this.cars = cars.toArray(new Car[cars.size()]);
     }
 

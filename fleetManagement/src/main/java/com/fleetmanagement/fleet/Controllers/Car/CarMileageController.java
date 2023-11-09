@@ -32,7 +32,7 @@ public class CarMileageController {
     public CarMileageDTO getCarMileages()
     {
         List<CarMileage> carMileages = carMileageCRUDService.getCarMileageList() ;
-        carMileagesDTO.setCarMileage(carMileages);
+        carMileagesDTO.setCarMileageAsList(carMileages);
         return carMileagesDTO ;
     }
 
@@ -40,7 +40,7 @@ public class CarMileageController {
     public CarMileageDTO getCarMileagesById(@PathVariable("id") final Long id)
     {
         CarMileage carMileages = carMileageCRUDService.getCarMileageByID(Long.valueOf(id)) ;
-        carMileagesDTO.setCarMileage(carMileages) ;
+        carMileagesDTO.setCarMileageAsSingle(carMileages) ;
 
         return carMileagesDTO ;
     }

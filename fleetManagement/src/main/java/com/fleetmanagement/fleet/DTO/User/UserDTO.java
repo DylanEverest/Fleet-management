@@ -19,13 +19,13 @@ public class UserDTO
         return users;
     }
 
-    public void setUser(User users) {
+    public void setUsersAsSingle(User users) {
         this.users[0] = users;
     }
-    public void setUser(User[] users) {
+    public void setUsers(User[] users) {
         this.users = users;
     }
-    public void setUser(List<User> users) {
+    public void setUsersAsList(List<User> users) {
         this.users = users.toArray(new User[users.size()]);
     }
 

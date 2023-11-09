@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fleetmanagement.fleet.DTO.User.UserDTO;
 import com.fleetmanagement.fleet.Entities.User.User;
 import com.fleetmanagement.fleet.Entities.User.UserException;
 import com.fleetmanagement.fleet.Security.JWT.utils.JWTGenerator;
@@ -37,10 +38,12 @@ public class UserAuthController
 
 
     @PostMapping("register")
-    public ResponseEntity<?> register(@RequestBody User user) 
+    public ResponseEntity<?> register(@RequestBody UserDTO userDTO) 
     {
         try
         {
+            User user = userDTO.getUser()[0];
+
             registerService.registerUser(user);
         }
         catch(RegisterException | UserException e)
