@@ -11,22 +11,27 @@ import com.fleetmanagement.fleet.Entities.User.User;
 public class UserDTO 
 {
     @Autowired
-    User [] users ;    
+    User [] listUser ;    
+
+    @Autowired
+    User user;
 
     String errors ;
 
-    public User[] getUser() {
-        return users;
+    public User[] getListUser() {
+        return listUser;
     }
 
-    public void setUsersAsSingle(User users) {
-        this.users[0] = users;
+    public void setListUser(User[] listUser) {
+        this.listUser = listUser;
     }
-    public void setUsers(User[] users) {
-        this.users = users;
+
+    public User getUser() {
+        return user;
     }
-    public void setUsersAsList(List<User> users) {
-        this.users = users.toArray(new User[users.size()]);
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getErrors() {
@@ -36,5 +41,7 @@ public class UserDTO
     public void setErrors(String errors) {
         this.errors = errors;
     }
+
+
 
 }

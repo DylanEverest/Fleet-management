@@ -11,22 +11,27 @@ import com.fleetmanagement.fleet.Entities.Car;
 public class CarDTO 
 {
     @Autowired
-    Car [] cars ;    
+    Car [] listCars ;    
+
+    @Autowired
+    Car car;
 
     String errors ;
 
-    public Car[] getCar() {
-        return cars;
+    public Car[] getListCars() {
+        return listCars;
     }
 
-    public void setCarAsSingle(Car cars) {
-        this.cars[0] = cars;
+    public void setListCars(Car[] listCars) {
+        this.listCars = listCars;
     }
-    public void setCars(Car[] cars) {
-        this.cars = cars;
+
+    public Car getCar() {
+        return car;
     }
-    public void setCarAsList(List<Car> cars) {
-        this.cars = cars.toArray(new Car[cars.size()]);
+
+    public void setCar(Car car) {
+        this.car = car;
     }
 
     public String getErrors() {
@@ -36,5 +41,7 @@ public class CarDTO
     public void setErrors(String errors) {
         this.errors = errors;
     }
+
+
     
 }

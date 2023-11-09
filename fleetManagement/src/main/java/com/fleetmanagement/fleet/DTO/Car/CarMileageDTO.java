@@ -11,30 +11,44 @@ import com.fleetmanagement.fleet.Entities.CarMileage;
 public class CarMileageDTO 
 {
     @Autowired
-    CarMileage [] carsMileage ;    
+    CarMileage [] listCarMileage ;    
 
+    @Autowired
+    CarMileage carMileage;
+
+    
     String errors ;
 
-    public CarMileage[] getCarMileage() {
-        return carsMileage;
+
+    public CarMileage[] getListCarMileage() {
+        return listCarMileage;
     }
 
-    public void setCarMileageAsSingle(CarMileage carsMileage) {
-        this.carsMileage[0] = carsMileage;
+
+    public void setListCarMileage(CarMileage[] listCarMileage) {
+        this.listCarMileage = listCarMileage;
     }
-    public void setCarMileage(CarMileage[] carsMileage) {
-        this.carsMileage = carsMileage;
+
+
+    public CarMileage getCarMileage() {
+        return carMileage;
     }
-    public void setCarMileageAsList(List<CarMileage> carsMileage) {
-        this.carsMileage = carsMileage.toArray(new CarMileage[carsMileage.size()]);
+
+
+    public void setCarMileage(CarMileage carMileage) {
+        this.carMileage = carMileage;
     }
+
 
     public String getErrors() {
         return errors;
     }
 
+
     public void setErrors(String errors) {
         this.errors = errors;
     }
+
+ 
     
 }
